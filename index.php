@@ -2,7 +2,7 @@
 
 // configuração de proxy SENAI
 $proxy = '10.1.21.254:3128';
-$arrayP = array();
+$arrayParagrafos = [];
 $arrayPConfig = array(
 
     'http' => array(
@@ -32,8 +32,8 @@ libxml_use_internal_errors(true);
 $dom->loadHTML($caputraHtml);
 libxml_clear_errors();
 
-// captura as tags p
 $tagsDiv = $dom->getElementsByTagName('div');
+// captura as tags p
 //$tagsP =$dom->getElementsByTagName('p');
 
 //foreach imprime todas as tags P
@@ -56,15 +56,25 @@ foreach ($tagsDiv as $div) {
             if ($classInterna == 'box_announce') {
 
                 $tagPInternas = $divInterna->getElementsByTagName('p');
-
-                //echo $divInterna->nodeValue;
+                
                 foreach ($tagPInternas as $tagP) {
 
-                    $arrayP[] = $tagP->nodeValue;
+                  $arrayParagrafos[] = $tagP->nodeValue;
                 }
-            }
+            break;
         }
+    }
+break;
     }
 }
 
-print_r($arrayP);
+
+/*print_r($arrayParagrafos);
+ foreach ($arrayParagrafos as $key => $value) {
+     echo $value . "<br>" ;
+ }
+ $arrayParagrafos = (objeto) $objetoData ;
+foreach ($arrayParagrafos as $key => $value) {
+    # code...
+}
+*/
