@@ -22,11 +22,12 @@ class PlacarFutebol
        $tagsDiv =$this->capturaTagsDiGeral();
        $divsInternas =$this->divInternas($tagsDiv);
        $tagsP = $this->capturarTagsP($divsInternas);
-       $paragrafosArray = $this->getDados($tagsP);
+       $paragrafosArray = $this->getArrayParagrafos($tagsP);
        return $paragrafosArray;
 
     }
 
+    //metodo para configuração de PROXY 
     private function getContextoConexao()
     {
         $arrayPConfig = array(
