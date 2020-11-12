@@ -1,6 +1,6 @@
 <?php
 
-class GutenbergCrawler
+class PlacarFutebol
 {
 
     private $url;
@@ -11,7 +11,7 @@ class GutenbergCrawler
     public function __construct()
     {
         $this->proxy = '10.1.21.254:3128';
-        $this->url = 'https://www.gutenberg.org/';
+        $this->url = 'https://www.placardefutebol.com.br/';
         $this->dom =  new DOMDocument();
     }
 
@@ -22,7 +22,7 @@ class GutenbergCrawler
        $tagsDiv =$this->capturaTagsDiGeral();
        $divsInternas =$this->divInternas($tagsDiv);
        $tagsP = $this->capturarTagsP($divsInternas);
-       $paragrafosArray = $this->getArrayParagrafos($tagsP);
+       $paragrafosArray = $this->getDados($tagsP);
        return $paragrafosArray;
 
     }
@@ -49,10 +49,10 @@ class GutenbergCrawler
     }
     private function carregarHtml()
     {
-        /* usar somente em local que for config PROXY 
-        $context = $this->getContextoConexao();
-        $this->html = file_get_contents($this->url, false, $context);
-        */
+
+      //  $context = $this->getContextoConexao();
+        // usar somente onde tem que haver configuração de proxy
+        //$this->html = file_get_contents($this->url, false, $context);
         $this->html = file_get_contents($this->url);
 
         libxml_use_internal_errors(true);
@@ -77,7 +77,7 @@ class GutenbergCrawler
 
             $classe = $div->getAttribute('class');
 
-            if ($classe == 'page_content') {
+            if ($classe == 'match-card-league-name') {
                 $divInternas = $div->getElementsByTagName('div');
                 break;
             }
@@ -88,6 +88,7 @@ class GutenbergCrawler
     private function capturarTagsP($divInternas)
     {
         $tagsP = null;
+
         foreach ($divInternas as $divInterna) {
             $classeInterna = $divInterna->getAttribute('class');
 
