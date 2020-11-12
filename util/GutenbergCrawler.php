@@ -10,8 +10,8 @@ class GutenbergCrawler
 
     public function __construct()
     {
-        $this->url = 'https://www.gutenberg.org/';
         $this->proxy = '10.1.21.254:3128';
+        $this->url = 'https://www.gutenberg.org/';
         $this->dom =  new DOMDocument();
     }
 
@@ -66,7 +66,7 @@ class GutenbergCrawler
         $tagsDivGeral = $this->dom->getElementsByTagName('div');
         return $tagsDivGeral;
     }
-    private function divInternas($divGeral, $nomeClass = "page_content")
+    private function divInternas($divGeral)
     {
 
         $divsInternas = null;

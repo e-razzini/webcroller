@@ -69,8 +69,8 @@ break;
 }
 
 
-/*print_r($arrayParagrafos);
- foreach ($arrayParagrafos as $key => $value) {
+print_r($arrayParagrafos);
+/* foreach ($arrayParagrafos as $key => $value) {
      echo $value . "<br>" ;
  }
  $arrayParagrafos = (objeto) $objetoData ;
